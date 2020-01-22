@@ -211,11 +211,11 @@ args.filter(el => el === 1);
 //Destructuring
 //Array destructuring (according to order)
 [a,b] = ['Hello', 'Max'];
-console.log(a) //Hello
-console.log(b) //Max
+console.log(a); //Hello
+console.log(b); //Max
            
 //Object destructuring (according to property name)
-{name} = {name: 'Max', age: 28}
+{name} = {name: 'Max', age: 28};
 console.log(name)//Max 
 console.log(age)//undefined
 
