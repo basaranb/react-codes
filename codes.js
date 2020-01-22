@@ -1,4 +1,5 @@
 import { Component } from "c:/Users/basar/react-prototype/node_modules/@types/react";
+import { useState } from "react";
 
 //Freeze object against change Object.freeze(object)
 let obj = {
@@ -251,6 +252,7 @@ function App() {
   );
 }
 
+//Set State
 class App extends Component{
   state = {
     persons:[
@@ -260,14 +262,101 @@ class App extends Component{
     ]
   }
 
+  switchNameHandler = () => {
+    console.log("Was clicked!");
+    //Don't try to edit state directly, doesn't work, use set state method
+    //this.state.persons[0].name = "Maximillian";
+    this.setState({
+      persons: [
+        { name: "Maximillian", age: 28 },
+        { name: "Manu", age: 30 },
+        { name: "Stephanie", age: 29 }
+      ]
+    }); //Merges with the state, doesn't change otherState
+  };
+
   render (){
     return (
       <div>
         <h1>Hi, I'm a React App</h1>
         <p>This is really working!</p>
-        <button onClick={}>Switch Name</button>
+        <button onClick={this.switchNameHandler}>Switch Name</button>
         <Person name={this.state.persons[0].name}></Person>
       </div>
     )
   }
+}
+
+
+
+//Function hooks, setting states
+import {useState} from 'react'; //Most important hook
+
+const app = props =>{
+  const [personState, setPersonsState  ] = useState({  //Pass initial state into useState, it returns an array with two elements
+    //First one is the initial state, second one is the function that updates the state
+    persons:[
+      {name: 'Max', age: 28},
+      {name: 'Manu', age: 30},
+      {name: 'Stephanie', age: 26}
+    ],
+    otherState: 'other value'
+  });
+
+  const switchNameHandler = () => { //You can have functions in functions
+    console.log("Was clicked!");
+    //Don't try to edit state directly, doesn't work, use set state method
+    //this.state.persons[0].name = "Maximillian";
+    setPersonsState({
+      persons: [
+        { name: "Maximillian", age: 28 },
+        { name: "Manu", age: 30 },
+        { name: "Stephanie", age: 29 }
+      ]
+    }); //With function hook it doesn't merge!!! otherState disappears, you need to pass the whole state
+  };
+    return (
+      <div>
+        <h1>Hi, I'm a React App</h1>
+        <p>This is really working!</p>
+        <button onClick={switchNameHandler}>Switch Name</button>
+        <Person name={personState.persons[0].name}></Person>
+      </div>
+    )
+}
+
+//Functional component slicing states
+import {useState} from 'react'; //Most important hook
+
+const app = props =>{
+  const [personState, setPersonsState  ] = useState({  //Pass initial state into useState, it returns an array with two elements
+    //First one is the initial state, second one is the function that updates the state
+    persons:[
+      {name: 'Max', age: 28},
+      {name: 'Manu', age: 30},
+      {name: 'Stephanie', age: 26}
+    ]
+  });
+  const [otherState, setOtherState] = useState({otherState: 'other value'}) //You can slice state into smaller parts and update them seperately
+
+  const switchNameHandler = () => { //You can have functions in functions
+    console.log("Was clicked!");
+    //Don't try to edit state directly, doesn't work, use set state method
+    //this.state.persons[0].name = "Maximillian";
+    setPersonsState({
+      persons: [
+        { name: "Maximillian", age: 28 },
+        { name: "Manu", age: 30 },
+        { name: "Stephanie", age: 29 }
+      ]
+    }); //With function hook it doesn't merge!!! otherState disappears, you need to pass the whole state
+  };
+    return (
+      <div>
+        <h1>Hi, I'm a React App</h1>
+        <p>This is really working!</p>
+        <button onClick={switchNameHandler}>Switch Name</button>
+        <Person name={personState.persons[0].name}></Person>
+      </div>
+    )
 }
