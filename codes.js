@@ -135,7 +135,7 @@ const person = {
 export default person
 /***********************************************************/  
 //export from utility.js
-export const clean = () => {...}
+export const clean = () => {"..."}
 export const baseData = 10;
 /***********************************************************/                            
 //import into another app.js file
@@ -183,11 +183,11 @@ class Male extends Human{
 //Constructor ES7
 constructor(){
   this.myProperty = 'value';
-}    
-myMethod(){...}                 
+}
+myMethod(){"..."}                 
 //Constructor ES6
 myProperty = 'value';
-myMethod = () => {...}
+myMethod = () => {"..."}
 /***********************************************************/                          
 //Class, inheritence ES7
 class Human {
@@ -414,3 +414,29 @@ return(){
 }
 </div>
 }
+/***********************************************************/
+render(){
+  if (this.state.showPersons){
+    persons = (
+      <div>
+        {this.state.person.map(person => {
+          return <Person
+          name ={person.name}
+          age ={person.age} />
+        })}
+      </div>
+    )
+  }
+}
+/***********************************************************/
+//Copy array
+const persons = array.slice();
+//or
+const persons =  [...array];
+/***********************************************************/
+//Copy Object
+const person ={
+  ...this.state.persons[personIndex]
+}
+//or
+const person = Object.assign({}, this.state.persons[personIndex])
