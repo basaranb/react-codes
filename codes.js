@@ -233,6 +233,38 @@ const numbers = [1,2,3];
 /***********************************************************/
 //Create react project
 //npm init react-app my-app-name
+
+//Functional components (also referred to as "presentational", "dumb" or "stateless" components)
+//class-based components (also referred to as "containers", "smart" or "stateful" components)
+
+//Dynamic component
+const person = () => {
+  return <p>Hello my age is {Math.floor(Math.random()*30)}</p>
+}
+
+//Pass attributes functional component (props is not keyword)
+<Person name = 'Basaran' age = '30'>My hobbies: Gaming</Person>
+
+const Person = (props) => {
+  return (
+      <div>
+          <p>Hello my name is {props.name} and my age is {props.age}</p>
+          <p>{props.children}</p>
+      </div>
+      )
+}
+//With class component, use this.props
+class Person extends Component {
+  render(){
+      return(
+      <div>
+          <p>Hello my name is {this.props.name} and my age is {this.props.age}</p>
+          <p>{props.children}</p>
+      </div>
+      ) 
+  }
+}
+
 /***********************************************************/
 //Create react component using React.createElement
 function App() {
@@ -362,7 +394,7 @@ const app = props =>{
 };
 /***********************************************************/
 //Get input onChange
-unction App() {
+function App() {
   const [states, setStates] = useState({
     username: "Basaran",
     username2: "Basaran2"
