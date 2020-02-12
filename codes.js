@@ -446,3 +446,21 @@ return(){
 }
 </div>
 }
+/***********************************************************/
+//Lifecycle hooks
+//ShouldComponentUpdate, decides if the component should update by using props & state with nextProps & nextState
+shouldComponentUpdate(nextProps, nextState){
+  return true //Should return boolean, default is true
+  //or return false
+}
+//useEffect, Functional componentler için componentDidMount + componentDidUpdate
+const cockpit = (props) =>{
+  useEffect(() => {
+    effect
+    return () => {
+      cleanup
+    };
+  }, [props.persons])  //Only run when props.persons change
+//}, []  if left empty, it only runs when the component is mounted
+}
+
